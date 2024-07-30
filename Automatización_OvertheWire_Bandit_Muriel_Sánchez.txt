@@ -1,0 +1,114 @@
+#!/bin/bash
+
+nivel_1() {
+    echo "Nivel 1: El password para el siguiente nivel está en un archivo llamado readme ubicado en el directorio home."
+    echo "Para lograr conectarse al servidor de overthewire nivel 0 se debe ingresar el siguiente comando: ssh bandit0@bandit.labs.overthewire.org -p 2220, una vez conectado te pedira la contraseña del nivel “bandit0”, para descifrar la siguiente contraseña debes ingresar el siguiente comando: 'cat readme' el cual te mostrar el contenido dentro de la carpeta readme "
+    PASSWORD=$(ssh bandit0@bandit.labs.overthewire.org -p 2220 'cat readme')
+    echo "Password nivel 1: $PASSWORD"
+    echo "Puedes copiar la contraseña y pegarla al conectarte a bandit1."
+    echo "Comando: ssh bandit1@bandit.labs.overthewire.org -p 2220"
+}
+
+nivel_2() {
+    echo "Nivel 2: El password para el siguiente nivel está en un archivo llamado - ubicado en el directorio home."
+    echo "Para lograr conectarse al servidor de overthewire nivel 1 se debe ingresar el siguiente comando: ssh bandit1@bandit.labs.overthewire.org -p 2220, copiar la contraseña anterior, una vez conectado para descifrar la siguiente contraseña debes ingresar el siguiente comando: 'cat ./-' el cual nos ayudará a ejecutar el archivo ‘-’"
+    PASSWORD=$(ssh bandit1@bandit.labs.overthewire.org -p 2220 'cat ./-')
+    echo "Password nivel 2: $PASSWORD"
+    echo "Puedes copiar la contraseña y pegarla al conectarte a bandit2."
+    echo "Comando: ssh bandit2@bandit.labs.overthewire.org -p 2220"
+}
+
+nivel_3() {
+    echo "Nivel 3: El password para el siguiente nivel está en un archivo oculto en el directorio home."
+    echo "Para lograr conectarse al servidor de overthewire nivel 2 se debe ingresar el siguiente comando: ssh bandit2@bandit.labs.overthewire.org -p 2220,una vez conectado pedira la contraseña del ejercicio anterior, en el nivel actual, para descifrar la siguiente contraseña debes ingresar el siguiente comando: 'cat spaces\ in\ this\ filename', se debe colocar cat para leer el archivo y el ‘\’ después de cada palabra ya que el nombre del archivo sin el backslash tomará cada palabra como nombre de directorio, por ende te dará un error."
+    PASSWORD=$(ssh bandit2@bandit.labs.overthewire.org -p 2220 'cat spaces\ in\ this\ filename')
+    echo "Password nivel 3: $PASSWORD"
+    echo "Puedes copiar la contraseña y pegarla al conectarte a bandit3."
+    echo "Comando: ssh bandit3@bandit.labs.overthewire.org -p 2220"
+}
+
+nivel_4() {
+    echo "Nivel 4: El password para el siguiente nivel está en el único archivo legible por humanos en el directorio inhere."
+    echo "Para lograr conectarse al servidor de overthewire nivel 3 se debe ingresar el siguiente comando: ssh bandit3@bandit.labs.overthewire.org -p 2220,una vez conectado para descifrar la siguiente contraseña debes ingresar el siguiente comando: 'cd inhere; ingresa al directorio inhre y dentro del directorio ejecutar el comando: cat ...H*'para ejecutar un archivo que sea legible por humanos"
+    PASSWORD=$(ssh bandit3@bandit.labs.overthewire.org -p 2220 'cd inhere; cat ...H*')
+    echo "Comando: ssh bandit3@bandit.labs.overthewire.org -p 2220 'cat $PASSWORD'"
+    echo "Password nivel 4: $PASSWORD"
+    echo "Puedes copiar la contraseña y pegarla al conectarte a bandit4."
+    echo "Comando: ssh bandit4@bandit.labs.overthewire.org -p 2220"
+}
+
+nivel_5() {
+    echo "Nivel 5: El password para el siguiente nivel está en un archivo de solo lectura en el directorio inhere, en medio de muchos archivos no legibles."
+    echo "Para lograr conectarse al servidor de overthewire nivel 4 se debe ingresar el siguiente comando: ssh bandit4@bandit.labs.overthewire.org -p 2220,una vez conectado para descifrar la siguiente contraseña debes ingresar el siguiente comando: 'cd inhere/ ; abre el directorio inhere, una vez dentro se ejecute el siguiente comando: cat /home/bandit4/inhere/-file07' en comando ingresa a las diferentes archivo y verifica en que archivo si existe contenido"
+    PASSWORD=$(ssh bandit4@bandit.labs.overthewire.org -p 2220 'cd inhere/ ; cat /home/bandit4/inhere/-file07')
+    echo "Comando: ssh bandit4@bandit.labs.overthewire.org -p 2220 'cat $PASSWORD'"
+    echo "Password nivel 5: $PASSWORD"
+    echo "Puedes copiar la contraseña y pegarla al conectarte a bandit5."
+    echo "Comando: ssh bandit5@bandit.labs.overthewire.org -p 2220"
+}
+
+nivel_6() {
+    echo "Nivel 6: El password para el siguiente nivel está en un archivo que tiene un tamaño de 1033 bytes en el directorio inhere."
+    echo "Para lograr conectarse al servidor de overthewire nivel 5 se debe ingresar el siguiente comando: ssh bandit5@bandit.labs.overthewire.org -p 2220,una vez conectado para descifrar la siguiente contraseña debes ingresar el siguiente comando: 'cd inhere ; abre el directorio inhere, una vez dentro se ejecute el siguiente comando: find -type f -size 1033c ;que encontrará el tipo del archivo f y con el tamaño de 1033c;al encontrarlos se ejecutan los siguiente comandos:  cat ./maybehere07/.file2' estos abre el directorio que se encontró con las especificaciones pedidas"
+    PASSWORD$(ssh bandit5@bandit.labs.overthewire.org -p 2220 'cd inhere ; find -type f -size 1033c ; cat ./maybehere07/.file2')
+    echo "Comando: ssh bandit5@bandit.labs.overthewire.org -p 2220 'cat $PASSWORD'"
+    echo "Password nivel 6: $PASSWORD"
+    echo "Puedes copiar la contraseña y pegarla al conectarte a bandit6."
+    echo "Comando: ssh bandit6@bandit.labs.overthewire.org -p 2220"
+}
+
+nivel_7() {
+    echo "Nivel 7: El password para el siguiente nivel está en el archivo data.txt de la primera línea que contiene la palabra 'millionth'."
+    echo "Para lograr conectarse al servidor de overthewire nivel 6 se debe ingresar el siguiente comando: ssh bandit6@bandit.labs.overthewire.org -p 2220,una vez conectado para descifrar la siguiente contraseña debes ingresar el siguiente comando: 'find / -user bandit7 -group bandit6 -size 32c 2>/dev/null  ; cat /var/lib/dpkg/info/bandit7.password'"
+    PASSWORD=$(ssh bandit6@bandit.labs.overthewire.org -p 2220 'find / -user bandit7 -group bandit6 -size 32c 2>/dev/null  ; cat /var/lib/dpkg/info/bandit7.password')
+    echo "Password nivel 7: $PASSWORD"
+    echo "Puedes copiar la contraseña y pegarla al conectarte a bandit7."
+    echo "Comando: ssh bandit7@bandit.labs.overthewire.org -p 2220"
+}
+
+nivel_8() {
+    echo "Nivel 8: El password para el siguiente nivel está en el archivo data.txt que contiene una secuencia única de caracteres."
+    echo "Para lograr conectarse al servidor de overthewire nivel 7 se debe ingresar el siguiente comando: ssh bandit7@bandit.labs.overthewire.org -p 2220,una vez conectado para descifrar la siguiente contraseña debes ingresar el siguiente comando: 'cat data.txt | grep millionth'"
+    PASSWORD=$(ssh bandit7@bandit.labs.overthewire.org -p 2220 'cat data.txt | grep millionth')
+    echo "Password nivel 8: $PASSWORD"
+    echo "Puedes copiar la contraseña y pegarla al conectarte a bandit8."
+    echo "Comando: ssh bandit8@bandit.labs.overthewire.org -p 2220"
+}
+
+nivel_9() {
+    echo "Nivel 9: El password para el siguiente nivel está en el archivo data.txt, que contiene varias cadenas de longitud igual, donde una de ellas aparece únicamente una vez."
+    echo "Para lograr conectarse al servidor de overthewire nivel 8 se debe ingresar el siguiente comando: ssh bandit8@bandit.labs.overthewire.org -p 2220,una vez conectado para descifrar la siguiente contraseña debes ingresar el siguiente comando: 'sort data.txt | uniq -u'"
+    PASSWORD=$(ssh bandit8@bandit.labs.overthewire.org -p 2220 'sort data.txt | uniq -u')
+    echo "Password nivel 9: $PASSWORD"
+    echo "Puedes copiar la contraseña y pegarla al conectarte a bandit9."
+    echo "Comando: ssh bandit9@bandit.labs.overthewire.org -p 2220"
+}
+
+nivel_10() {
+    echo "Nivel 10: El password para el siguiente nivel está en un archivo comprimido."
+    echo "Para lograr conectarse al servidor de overthewire nivel 9 se debe ingresar el siguiente comando: ssh bandit9@bandit.labs.overthewire.org -p 2220,una vez conectado para descifrar la siguiente contraseña debes ingresar el siguiente comando: 'strings data.txt | grep ==='"
+    PASSWORD=$(ssh bandit9@bandit.labs.overthewire.org -p 2220 'strings data.txt | grep ===')
+    echo "Password nivel 10: $PASSWORD"
+    echo "Puedes copiar la contraseña y pegarla al conectarte a bandit10."
+    echo "Comando: ssh bandit10@bandit.labs.overthewire.org -p 2220"
+}
+
+while true; do
+    echo "Selecciona un nivel para conectar y resolver (0-10) o presiona 11 para salir:"
+    select opt in "Nivel 1" "Nivel 2" "Nivel 3" "Nivel 4" "Nivel 5" "Nivel 6" "Nivel 7" "Nivel 8" "Nivel 9" "Nivel 10" "Salir"; do
+        case $REPLY in
+            1) nivel_1; break ;;
+            2) nivel_2; break ;;
+            3) nivel_3; break ;;
+            4) nivel_4; break ;;
+            5) nivel_5; break ;;
+            6) nivel_6; break ;;
+            7) nivel_7; break ;;
+            8) nivel_8; break ;;
+            9) nivel_9; break ;;
+            10) nivel_10; break ;;
+            11) exit 0 ;;
+            *) echo "Opción no válida";;
+        esac
+    done
+done
