@@ -1,0 +1,26 @@
+name: Build genetics PDF
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'generate_genetica_pdf.py'
+      - '.github/workflows/build_genetica_pdf.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install reportlab pypdf
+      - run: python generate_genetica_pdf.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: guia-sindromes-hereditarios-cancer
+          path: Guia_sindromes_hereditarios_cancer.pdf
